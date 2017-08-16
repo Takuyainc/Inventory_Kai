@@ -29,10 +29,6 @@ public class Inventory : MonoBehaviour
             Slots.Add(Instantiate(InventorySlot));
             Slots[i].transform.SetParent(SlotPanel.transform);
         }
-
-        AddItem(0);
-        AddItem(1);
-       
     }
 
     public void AddItem(int BaseID) {
@@ -45,12 +41,11 @@ public class Inventory : MonoBehaviour
                 GameObject InventoryObject = Instantiate(InventoryItem);
                 InventoryObject.transform.SetParent(Slots[i].transform);
                 InventoryObject.transform.position = Vector2.zero;
-               // InventoryObject.GetComponent<Image>().sprite = ItemtoAdd.itemsprite;
-               // print(ItemtoAdd.itemsprite.name);
                 InventoryObject.name = ItemtoAdd.Title;
                 ItemsEventSystem item = InventoryObject.GetComponent<ItemsEventSystem>();
                 item.setItem(ItemtoAdd);
                 item.databasereference = database;
+                print(InventoryItems.Count + "Wurden hinzugefügt");
                 break;
             }
         }

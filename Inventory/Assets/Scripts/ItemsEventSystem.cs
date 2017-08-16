@@ -45,7 +45,7 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         if (_Item != null && eventData.button == PointerEventData.InputButton.Right)
         {
-           setItem( databasereference.Upgradeitem(_Item));      //Debug.Log("_Item:  "+(_Item == null)+" databasereference: "+ (databasereference==null));
+            setItem( databasereference.Upgradeitem(_Item));      //Debug.Log("_Item:  "+(_Item == null)+" databasereference: "+ (databasereference==null));
             Debug.Log(_Item.Title + "has been upgraded son"); 
         }
 

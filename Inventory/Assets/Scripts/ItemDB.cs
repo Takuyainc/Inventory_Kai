@@ -54,29 +54,21 @@ public class ItemDB : MonoBehaviour
      
 
         if(playerMoney < itemToUpgrade.Value){
-            throw new System.Exception();
+            
+            print("You can not upgrade further");
+            return itemToUpgrade;
         }
 
         if (playerMoney >= itemToUpgrade.Value)
         {
-                Item.TierEnum upgradeTier = Item.TierEnum.epic;  //abgleichen ob ein größeres Tier vorhanden ist
-
-                if (itemToUpgrade.Tier != Item.TierEnum.epic)   // wenn nicht epic, dann:
-                {
-                    if (itemToUpgrade.Tier != Item.TierEnum.rare) // wenn nicht rare, dann mach rare
-                    {
-                        upgradeTier = Item.TierEnum.rare;
-                    }
-                    else                                          //wenn nicht rare && normal, dann epic
-                    {
-                        upgradeTier = Item.TierEnum.epic;
-
-                    }
+            if(itemToUpgrade.Tier == Item.TierEnum.epic){    //abgleichen ob ein größeres Tier vorhanden ist
+                print("Highest Tier reached");
+                return itemToUpgrade;
                 }
-                                                                            //altes item im spielerinventar mit neuem tauschen
-                UpgradeMoney(itemToUpgrade);                         //Kosten für das Upgrade vom Geld abziehen
+                                                                           //altes item im spielerinventar mit neuem tauschen
+                UpgradeMoney(itemToUpgrade);                                //Kosten für das Upgrade vom Geld abziehen
                
-                return GetbyBaseID(itemToUpgrade.ItemBaseID, upgradeTier);  //Rückgabe des Items in der DB, welches durch aktuelles Item ersetzt wird
+                return GetbyBaseID(itemToUpgrade.ItemBaseID, itemToUpgrade.Tier+1);  //Rückgabe des Items in der DB, welches durch aktuelles Item ersetzt wird
             }
         return itemToUpgrade;
     }

@@ -14,7 +14,7 @@
 		"Rarity":0,
 		"Slug":"gloves",
 		"UpdateCounter": 0,
-		"Tier": 1
+		"Tier": 0
 	},
 	{
 		"BaseID":"Gloves_Tier_1", 
@@ -31,7 +31,7 @@
 		"Rarity":0,
 		"Slug":"apple",
 		"UpdateCounter": 1,
-		"Tier": 2
+		"Tier": 1
 	},
 	{
 		"BaseID":"Gloves_Tier_1", 
@@ -48,7 +48,7 @@
 		"Rarity":0,
 		"Slug":"hp",
 		"UpdateCounter": 2,
-		"Tier": 3
+		"Tier": 2
 	},
 	{
 		"BaseID":"Sword_Tier_1", 
