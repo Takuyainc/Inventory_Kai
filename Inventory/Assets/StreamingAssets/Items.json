@@ -63,8 +63,26 @@
 		"Stackable":false,
 		"Description":"Awesome gloves, yo!",
 		"Rarity":0,
-		"Slug":"hp",
+		"Slug":"mp",
+		"UpdateCounter": 0,
+		"Tier": 1
+	},
+	{
+		"BaseID":"Meat", 
+		"ID":4,
+		"Title":"Meat",
+		"Value":100,
+		"Defense":0,
+		"Damage":0,
+		"MagicResistance":0,
+		"Capacity":0,
+		"Armor":0,
+		"Stackable":true,
+		"Description":"Awesome gloves, yo!",
+		"Rarity":0,
+		"Slug":"Meat",
 		"UpdateCounter": 0,
 		"Tier": 1
 	}
+
 ]

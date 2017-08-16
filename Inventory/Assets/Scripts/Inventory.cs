@@ -54,7 +54,21 @@ public class Inventory : MonoBehaviour
         ItemDB.Item ItemtoAdd = database.GetItemByID(BaseID);
         for (int i = 0; i < Slots.Count; i++) {
 
-            if (Slots[i].slotItem == null) {
+            if (ItemtoAdd.Stackable && Slots[i].slotItem._Item.ItemBaseID == ItemtoAdd.ItemBaseID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier) {
+
+                for (int j = 0; j < Slots.Count; j++) {
+
+                    if (ItemtoAdd.Stackable && Slots[i].slotItem._Item.ItemBaseID == ItemtoAdd.ItemBaseID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier && InventoryItems.Contains(ItemtoAdd)) {
+
+                        slotUnderPointer.stackcounter++;
+                        slotUnderPointer.StackCounterText.text = slotUnderPointer.stackcounter.ToString();
+                        break;
+                    }
+
+                }
+
+            }
+            else if (Slots[i].slotItem == null) {
                 InventoryItems.Add(ItemtoAdd);
                 GameObject InventoryObject = Instantiate(InventoryItem);
                 InventoryObject.transform.SetParent(Slots[i].transform);

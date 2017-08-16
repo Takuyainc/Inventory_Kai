@@ -12,6 +12,7 @@ public class ItemDB : MonoBehaviour
     public  static List<Item> database;
     public int playerMoney;
     public Currency currency;
+    public SlotEventSystem slotsystem;
 
     void Awake()            // Awake weil Datenbank mit dem ersten Frame geladen werden soll
     {
@@ -59,7 +60,7 @@ public class ItemDB : MonoBehaviour
             return itemToUpgrade;
         }
 
-        if (playerMoney >= itemToUpgrade.Value)
+        if (playerMoney >= itemToUpgrade.Value && slotsystem.stackcounter == 0) // 0 macht vllt keinen sinn
         {
             if(itemToUpgrade.Tier == Item.TierEnum.epic){    //abgleichen ob ein größeres Tier vorhanden ist
                 print("Highest Tier reached");

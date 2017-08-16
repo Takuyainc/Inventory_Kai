@@ -10,7 +10,6 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     Sprite Itemicon;
     public ItemDB.Item _Item;
     public ItemDB databasereference;
-    public int stacks;
 
     public SlotEventSystem slot;
 
@@ -27,6 +26,7 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         if (_Item != null)
         {
+            GetComponent<Image>().raycastTarget = false;
             initialPosition = transform.position;
             Inventory.instance.draggingItem = this;
             this.transform.position = eventData.position;
@@ -44,6 +44,7 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        GetComponent<Image>().raycastTarget = true;
         Inventory.instance.draggingItem = null;
         if (Inventory.instance.slotUnderPointer.slotItem == null)
         {
@@ -55,9 +56,10 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         }
         else {
             transform.position = initialPosition;
-            this.transform.SetParent(slot.transform);
+            this.transform.SetParent(slot.transform); 
         }
-    
+        
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
