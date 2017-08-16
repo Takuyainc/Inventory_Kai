@@ -20,11 +20,11 @@ public class ItemDB : MonoBehaviour
         database = JsonConvert.DeserializeObject<List<Item>>(jsonstring);       // Befüllen der Liste database mit allen Einträgen aus der JSON
     }
 
-    private void Update()
-    {
-        playerMoney = currency.Money;
-    }
+    public void Addmoney(int money) {
 
+        playerMoney += money;
+
+    }
     /// <summary>
     /// Get the item from the database that has the ID
     /// </summary>
@@ -49,6 +49,9 @@ public class ItemDB : MonoBehaviour
     public Item Upgradeitem(Item itemToUpgrade, int money) //aktuelles Item nutzen um eine Abfrage zu starten
     {
         money = playerMoney;            // aktuelles Geld nutzen um zu checken ob man sich ein upgrade leisten kann
+
+        print(money);
+        print(itemToUpgrade.Value);
 
         if(money < itemToUpgrade.Value){
             throw new System.Exception();

@@ -19,12 +19,9 @@ public class Currency : MonoBehaviour
         moneydisplay.text = Money.ToString();
     }
 
-    public void Addmoney(int moneytoAdd) {
+    public void UpdateAmountText() {
 
-        moneytoAdd = Money + 50;
-        Money = moneytoAdd;
-        Debug.Log(moneytoAdd);
-        SetText(moneytoAdd.ToString());
+        MoneyAmount.text = "" + db.playerMoney + "$";
     }
 
     public void SetText(string moneyAmount) {
