@@ -12,6 +12,9 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     public ItemDB databasereference;
     public int stacks;
 
+    public SlotEventSystem slot;
+
+    Vector3 initialPosition;
 
     public void setItem( ItemDB.Item newItem) {
 
@@ -24,6 +27,7 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         if (_Item != null)
         {
+            initialPosition = transform.position;
             Inventory.instance.draggingItem = this;
             this.transform.position = eventData.position;
         }
@@ -40,8 +44,18 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     public void OnEndDrag(PointerEventData eventData)
     {
         Inventory.instance.draggingItem = null;
-        transform.position = Inventory.instance.slotUnderPointer.transform.position;
-        transform.SetParent(Inventory.instance.slotUnderPointer.transform);
+        if (Inventory.instance.slotUnderPointer.slotItem == null)
+        {
+            slot.slotItem = null;
+            slot = Inventory.instance.slotUnderPointer;
+            Inventory.instance.slotUnderPointer.slotItem = this;
+            transform.position = Inventory.instance.slotUnderPointer.transform.position;
+            transform.SetParent(Inventory.instance.slotUnderPointer.transform);
+        }
+        else {
+            transform.position = initialPosition;
+        }
+    
     }
 
     public void OnPointerClick(PointerEventData eventData)

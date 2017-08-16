@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     int slotAmount;
 
     List<ItemDB.Item> InventoryItems = new List<ItemDB.Item>();
-    List<GameObject> Slots = new List<GameObject>();
+    List<SlotEventSystem> Slots = new List<SlotEventSystem>();
   
     public static Inventory instance;
     public ItemsEventSystem draggingItem;
@@ -34,8 +34,8 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < slotAmount; i++) {
 
-            InventoryItems.Add(new ItemDB.Item());
-            Slots.Add(Instantiate(InventorySlot));
+           // InventoryItems.Add(new ItemDB.Item());
+            Slots.Add(Instantiate(InventorySlot).GetComponent<SlotEventSystem>());
             Slots[i].transform.SetParent(SlotPanel.transform);
         }
     }
@@ -51,15 +51,17 @@ public class Inventory : MonoBehaviour
     public void AddItem(int BaseID) {
 
         ItemDB.Item ItemtoAdd = database.GetItemByID(BaseID);
-        for (int i = 0; i < InventoryItems.Count; i++) {
+        for (int i = 0; i < Slots.Count; i++) {
 
-            if (InventoryItems[i].ID == -1) {
-                InventoryItems[i] = ItemtoAdd;
+            if (Slots[i].slotItem == null) {
+                InventoryItems.Add(ItemtoAdd);
                 GameObject InventoryObject = Instantiate(InventoryItem);
                 InventoryObject.transform.SetParent(Slots[i].transform);
                 InventoryObject.transform.localPosition = Vector2.zero;
                 InventoryObject.name = ItemtoAdd.Title;
                 ItemsEventSystem item = InventoryObject.GetComponent<ItemsEventSystem>();
+                item.slot = Slots[i];
+                Slots[i].slotItem = item;
                 item.setItem(ItemtoAdd);
                 item.databasereference = database;
                 print(InventoryItems.Count + "Wurden hinzugefügt");

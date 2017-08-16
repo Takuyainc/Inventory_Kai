@@ -5,11 +5,14 @@ using UnityEngine.EventSystems;
 
 public class SlotEventSystem : MonoBehaviour,  IPointerEnterHandler , IPointerExitHandler{
 
-    ItemsEventSystem slotItem;
+    public ItemsEventSystem slotItem;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Inventory.instance.slotUnderPointer = this;
+        
+            Inventory.instance.slotUnderPointer = this;
+        
+        
     }
 
     public void OnPointerExit(PointerEventData eventData) {
