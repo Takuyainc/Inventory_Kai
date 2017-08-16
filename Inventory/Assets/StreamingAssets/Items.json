@@ -17,7 +17,7 @@
 		"Tier": 1
 	},
 	{
-		"BaseID":"Gloves_Tier_2", 
+		"BaseID":"Gloves_Tier_1", 
 		"ID":1,
 		"Title":"Mega Gloves",
 		"Value":100,
@@ -29,12 +29,12 @@
 		"Stackable":false,
 		"Description":"Awesome gloves, yo!",
 		"Rarity":0,
-		"Slug":"hp",
+		"Slug":"apple",
 		"UpdateCounter": 1,
 		"Tier": 2
 	},
 	{
-		"BaseID":"Gloves_Tier_3", 
+		"BaseID":"Gloves_Tier_1", 
 		"ID":2,
 		"Title":"Hyper Gloves",
 		"Value":100,
