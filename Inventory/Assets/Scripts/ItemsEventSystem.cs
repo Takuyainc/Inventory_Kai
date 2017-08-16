@@ -12,6 +12,14 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     public ItemDB databasereference;
     public int stacks;
 
+
+    public void setItem( ItemDB.Item newItem) {
+
+        _Item = newItem;
+        GetComponent<Image>().sprite = Resources.Load<Sprite>("Items/" + _Item.Slug);
+
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (_Item != null)

@@ -85,8 +85,8 @@ public class ItemDB : MonoBehaviour
         protected override void OnConstruct()
         {
             base.OnConstruct();
-            Debug.Log("works boy");
-
+            // Debug.Log("works boy");
+     
             this.ID = -1;
         }
 
@@ -129,12 +129,13 @@ public class ItemDB : MonoBehaviour
             this.Rarity = rarity;
             this.Slug = slug;
             this.UpgradeCounter = upgradeCounter;
-            this.Tier = tier;
-            this.itemsprite = Resources.Load<Sprite>("items/" + slug);
+            this.Tier = tier;            
+            this.itemsprite = Resources.Load<Sprite>("Items/" + slug);
         }
 
         public Item() : base()
         {
+           
         }
     }
 }
