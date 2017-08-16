@@ -40,6 +40,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
+
+    public void AddRandomItem() {
+
+
+        AddItem(Random.Range(0,ItemDB.database.Count));
+
+    }
+
     public void AddItem(int BaseID) {
 
         ItemDB.Item ItemtoAdd = database.GetItemByID(BaseID);
@@ -49,7 +57,7 @@ public class Inventory : MonoBehaviour
                 InventoryItems[i] = ItemtoAdd;
                 GameObject InventoryObject = Instantiate(InventoryItem);
                 InventoryObject.transform.SetParent(Slots[i].transform);
-                InventoryObject.transform.position = Vector2.zero;
+                InventoryObject.transform.localPosition = Vector2.zero;
                 InventoryObject.name = ItemtoAdd.Title;
                 ItemsEventSystem item = InventoryObject.GetComponent<ItemsEventSystem>();
                 item.setItem(ItemtoAdd);

@@ -9,7 +9,7 @@ public class ItemDB : MonoBehaviour
     /// <summary>
     /// Contains all items from the item database
     /// </summary>
-    private static List<Item> database;
+    public  static List<Item> database;
     public int playerMoney;
     public Currency currency;
 
