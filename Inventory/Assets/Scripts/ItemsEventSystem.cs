@@ -30,6 +30,7 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             initialPosition = transform.position;
             Inventory.instance.draggingItem = this;
             this.transform.position = eventData.position;
+            this.transform.SetParent(Inventory.instance.DragPanel.transform);
         }
     }
 
@@ -54,6 +55,7 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         }
         else {
             transform.position = initialPosition;
+            this.transform.SetParent(slot.transform);
         }
     
     }

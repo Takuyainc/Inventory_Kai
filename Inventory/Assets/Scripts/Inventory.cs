@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
     public ItemsEventSystem draggingItem;
     public SlotEventSystem slotUnderPointer;
+    public GameObject DragPanel;
 
     void Awake() {
         instance = this;
@@ -26,7 +27,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-
+        DragPanel = GameObject.Find("DragPanel");
         database = GetComponent<ItemDB>();
         slotAmount = 28;
         InventoryPanel = GameObject.Find("Inventory Panel");
@@ -34,9 +35,9 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < slotAmount; i++) {
 
-           // InventoryItems.Add(new ItemDB.Item());
             Slots.Add(Instantiate(InventorySlot).GetComponent<SlotEventSystem>());
             Slots[i].transform.SetParent(SlotPanel.transform);
+            Slots[i].name = "" + i;
         }
     }
 
