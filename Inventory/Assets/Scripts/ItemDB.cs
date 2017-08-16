@@ -11,7 +11,7 @@ public class ItemDB : MonoBehaviour
     /// </summary>
     private static List<Item> database;
     public int playerMoney;
-    Currency currency = new Currency();
+    public Currency currency;
 
     void Awake()            // Awake weil Datenbank mit dem ersten Frame geladen werden soll
     {
@@ -40,24 +40,24 @@ public class ItemDB : MonoBehaviour
         return database.Find(item => item.ItemBaseID == BaseID && item.Tier == tier);
     }
 
-    public int UpgradeMoney(int newMoney, Item selectedItem)
+    public int UpgradeMoney( Item selectedItem)
     {
-        newMoney = playerMoney - selectedItem.Value;
-        return playerMoney = newMoney;
+        playerMoney = playerMoney - selectedItem.Value;
+        currency.UpdateAmountText();
+        return playerMoney;
     }
 
-    public Item Upgradeitem(Item itemToUpgrade, int money) //aktuelles Item nutzen um eine Abfrage zu starten
+    public Item Upgradeitem(Item itemToUpgrade) //aktuelles Item nutzen um eine Abfrage zu starten
     {
-        money = playerMoney;            // aktuelles Geld nutzen um zu checken ob man sich ein upgrade leisten kann
+        // aktuelles Geld nutzen um zu checken ob man sich ein upgrade leisten kann
 
-        print(money);
-        print(itemToUpgrade.Value);
+     
 
-        if(money < itemToUpgrade.Value){
+        if(playerMoney < itemToUpgrade.Value){
             throw new System.Exception();
         }
 
-        if (money >= itemToUpgrade.Value)
+        if (playerMoney >= itemToUpgrade.Value)
         {
                 Item.TierEnum upgradeTier = Item.TierEnum.epic;  //abgleichen ob ein größeres Tier vorhanden ist
 
@@ -74,7 +74,8 @@ public class ItemDB : MonoBehaviour
                     }
                 }
                                                                             //altes item im spielerinventar mit neuem tauschen
-                UpgradeMoney(money, itemToUpgrade);                         //Kosten für das Upgrade vom Geld abziehen
+                UpgradeMoney(itemToUpgrade);                         //Kosten für das Upgrade vom Geld abziehen
+               
                 return GetbyBaseID(itemToUpgrade.ItemBaseID, upgradeTier);  //Rückgabe des Items in der DB, welches durch aktuelles Item ersetzt wird
             }
         return itemToUpgrade;
