@@ -24,6 +24,7 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         if (_Item != null)
         {
+            Inventory.instance.draggingItem = this;
             this.transform.position = eventData.position;
         }
     }
@@ -38,7 +39,9 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
+        Inventory.instance.draggingItem = null;
+        transform.position = Inventory.instance.slotUnderPointer.transform.position;
+        transform.SetParent(Inventory.instance.slotUnderPointer.transform);
     }
 
     public void OnPointerClick(PointerEventData eventData)

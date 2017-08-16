@@ -16,8 +16,17 @@ public class Inventory : MonoBehaviour
     List<ItemDB.Item> InventoryItems = new List<ItemDB.Item>();
     List<GameObject> Slots = new List<GameObject>();
   
+    public static Inventory instance;
+    public ItemsEventSystem draggingItem;
+    public SlotEventSystem slotUnderPointer;
+
+    void Awake() {
+        instance = this;
+    }
+
     void Start()
     {
+
         database = GetComponent<ItemDB>();
         slotAmount = 28;
         InventoryPanel = GameObject.Find("Inventory Panel");
