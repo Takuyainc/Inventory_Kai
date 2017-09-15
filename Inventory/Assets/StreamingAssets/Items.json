@@ -8,7 +8,7 @@
 		"Damage":0,
 		"MagicResistance":0,
 		"Capacity":0,
-		"Armor":0,
+		"Armor":1,
 		"Stackable":false,
 		"Description":"Awesome gloves, yo!",
 		"Rarity":0,
@@ -25,7 +25,7 @@
 		"Damage":0,
 		"MagicResistance":0,
 		"Capacity":0,
-		"Armor":0,
+		"Armor":2,
 		"Stackable":false,
 		"Description":"Awesome gloves, yo!",
 		"Rarity":0,
@@ -42,7 +42,7 @@
 		"Damage":0,
 		"MagicResistance":0,
 		"Capacity":0,
-		"Armor":0,
+		"Armor":3,
 		"Stackable":false,
 		"Description":"Awesome gloves, yo!",
 		"Rarity":0,
@@ -59,13 +59,13 @@
 		"Damage":0,
 		"MagicResistance":0,
 		"Capacity":0,
-		"Armor":0,
+		"Armor":4,
 		"Stackable":false,
 		"Description":"Awesome gloves, yo!",
 		"Rarity":0,
 		"Slug":"mp",
 		"UpdateCounter": 0,
-		"Tier": 1
+		"Tier": 0
 	},
 	{
 		"BaseID":"Meat", 
@@ -76,13 +76,13 @@
 		"Damage":0,
 		"MagicResistance":0,
 		"Capacity":0,
-		"Armor":0,
+		"Armor":5,
 		"Stackable":true,
 		"Description":"Awesome gloves, yo!",
 		"Rarity":0,
 		"Slug":"Meat",
 		"UpdateCounter": 0,
-		"Tier": 1
+		"Tier": 0
 	}
 
 ]

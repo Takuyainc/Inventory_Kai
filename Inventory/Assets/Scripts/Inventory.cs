@@ -49,16 +49,18 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void AddItem(int BaseID) {
+    public void AddItem(int ID) {
 
-     //   bool stackableandpresent = InventoryItems.Contains(itemto);
-        ItemDB.Item ItemtoAdd = database.GetItemByID(BaseID);
+     //  bool stackableandpresent = InventoryItems.Contains(itemto);
+        ItemDB.Item ItemtoAdd = database.GetItemByID(ID);
         for (int i = 0; i < Slots.Count; i++) {
 
-            if (ItemtoAdd.Stackable && Slots[i].slotItem != null && Slots[i].slotItem._Item.ItemBaseID == ItemtoAdd.ItemBaseID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier) { //wenn stackable
+            if (ItemtoAdd.Stackable && Slots[i].slotItem != null && Slots[i].slotItem._Item.ID == ItemtoAdd.ID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier) { //wenn stackable
 
                         Slots[i].StackItem(1);
-                        break;
+                        print(Slots[i].slotItem._Item.Armor);
+                        print(Slots[i].slotItem._Item.Stackable + " ist nicht stackable");
+                break;
 
             }
             else if (Slots[i].slotItem == null) {
@@ -72,7 +74,43 @@ public class Inventory : MonoBehaviour
                 Slots[i].slotItem = item;
                 item.setItem(ItemtoAdd);
                 item.databasereference = database;
+
                 print(InventoryItems.Count + " Wurden hinzugefügt");
+                print(Slots[i].slotItem._Item.Stackable + " ist nicht stackable");
+                break;
+            }
+        }
+    }
+
+    public void AddItem(ItemDB.Item ItemtoAdd)
+    {
+
+        for (int i = 0; i < Slots.Count; i++)
+        {
+
+            if (ItemtoAdd.Stackable && Slots[i].slotItem != null && Slots[i].slotItem._Item.ID == ItemtoAdd.ID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier)
+            { //wenn stackable
+
+                Slots[i].StackItem(1);
+                print(Slots[i].slotItem._Item.Armor);
+                print(Slots[i].slotItem._Item.Stackable + " ist nicht stackable");
+                break;
+
+            }
+            else if (Slots[i].slotItem == null)
+            {
+                InventoryItems.Add(ItemtoAdd);
+                GameObject InventoryObject = Instantiate(InventoryItem);
+                InventoryObject.transform.SetParent(Slots[i].transform);
+                InventoryObject.transform.localPosition = Vector2.zero;
+                InventoryObject.name = ItemtoAdd.Title;
+                ItemsEventSystem item = InventoryObject.GetComponent<ItemsEventSystem>();
+                item.slot = Slots[i];
+                Slots[i].slotItem = item;
+                item.setItem(ItemtoAdd);
+                item.databasereference = database;
+                print(InventoryItems.Count + " Wurden hinzugefügt");             
+                print(Slots[i].slotItem._Item.Stackable + " ist nicht stackable");
                 break;
             }
         }

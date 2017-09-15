@@ -12,8 +12,10 @@ public class SlotEventSystem : MonoBehaviour,  IPointerEnterHandler , IPointerEx
 
     private void Start()
     {
+
         Text counterdisplay = StackCounterText.GetComponent<Text>();
         counterdisplay.text = stackcounter.ToString();
+        StackCounterText.enabled = false;
 
     }
 

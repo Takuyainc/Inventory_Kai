@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="Currency" Collapsed="true">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACAQAAAAAIQAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Currency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAFACAAAABAAAAAEACAhAFIAAAAAEQgAAAAEEA=</HashCode>
+      <FileName>Assets\Scripts\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemDB" Collapsed="true">
+    <Position X="8" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="ItemDB.Item" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\ItemDB.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgAABAACAAAAAABAAAAIAAAIBAAAQAAABAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\ItemDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemsEventSystem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUAAAAAEAhAAAAAQAABAEAAAAAAAACAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ItemsEventSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" Collapsed="true" />
+  </Class>
+  <Class Name="SerializableBase" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAgABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\SerializableHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SlotEventSystem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABACCAAAAQAQAAAAAAAAAgAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\SlotEventSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Upgrading" Collapsed="true">
+    <Position X="4.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Assets\Scripts\Upgrading.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonNetSample" Collapsed="true">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAARAAAACAAAAAIAAAIAAAAAQgAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\UnityPackages\JsonNetSample\JsonNetSample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

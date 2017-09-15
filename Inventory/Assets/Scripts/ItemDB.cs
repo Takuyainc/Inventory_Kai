@@ -60,7 +60,7 @@ public class ItemDB : MonoBehaviour
             return itemToUpgrade;
         }
 
-        if (playerMoney >= itemToUpgrade.Value && slotsystem.stackcounter == 0) // 0 macht vllt keinen sinn
+        if (playerMoney >= itemToUpgrade.Value) // 0 macht vllt keinen sinn
         {
             if(itemToUpgrade.Tier == Item.TierEnum.epic){    //abgleichen ob ein größeres Tier vorhanden ist
                 print("Highest Tier reached");
