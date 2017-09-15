@@ -31,7 +31,10 @@ public class SlotEventSystem : MonoBehaviour,  IPointerEnterHandler , IPointerEx
 
     }
 
-    public void StackItem(int stackcount, string stackCounterDisplay) {
+    public void StackItem(int stackcount) {
 
-      }
+        stackcounter += stackcount;
+        StackCounterText.text = stackcounter.ToString();
+
+    }
 }

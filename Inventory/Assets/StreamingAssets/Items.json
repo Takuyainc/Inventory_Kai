@@ -19,7 +19,7 @@
 	{
 		"BaseID":"Gloves_Tier_1", 
 		"ID":1,
-		"Title":"Mega Gloves",
+		"Title":"Apple",
 		"Value":100,
 		"Defense":0,
 		"Damage":0,
@@ -36,7 +36,7 @@
 	{
 		"BaseID":"Gloves_Tier_1", 
 		"ID":2,
-		"Title":"Hyper Gloves",
+		"Title":"Health Potion",
 		"Value":100,
 		"Defense":0,
 		"Damage":0,
@@ -53,7 +53,7 @@
 	{
 		"BaseID":"Sword_Tier_1", 
 		"ID":3,
-		"Title":"Special Star",
+		"Title":"Mana Potion",
 		"Value":100,
 		"Defense":0,
 		"Damage":0,

@@ -51,21 +51,14 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(int BaseID) {
 
+     //   bool stackableandpresent = InventoryItems.Contains(itemto);
         ItemDB.Item ItemtoAdd = database.GetItemByID(BaseID);
         for (int i = 0; i < Slots.Count; i++) {
 
-            if (ItemtoAdd.Stackable && Slots[i].slotItem._Item.ItemBaseID == ItemtoAdd.ItemBaseID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier) {
+            if (ItemtoAdd.Stackable && Slots[i].slotItem != null && Slots[i].slotItem._Item.ItemBaseID == ItemtoAdd.ItemBaseID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier) { //wenn stackable
 
-                for (int j = 0; j < Slots.Count; j++) {
-
-                    if (ItemtoAdd.Stackable && Slots[i].slotItem._Item.ItemBaseID == ItemtoAdd.ItemBaseID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier && InventoryItems.Contains(ItemtoAdd)) {
-
-                        slotUnderPointer.stackcounter++;
-                        slotUnderPointer.StackCounterText.text = slotUnderPointer.stackcounter.ToString();
+                        Slots[i].StackItem(1);
                         break;
-                    }
-
-                }
 
             }
             else if (Slots[i].slotItem == null) {
@@ -79,7 +72,7 @@ public class Inventory : MonoBehaviour
                 Slots[i].slotItem = item;
                 item.setItem(ItemtoAdd);
                 item.databasereference = database;
-                print(InventoryItems.Count + "Wurden hinzugefügt");
+                print(InventoryItems.Count + " Wurden hinzugefügt");
                 break;
             }
         }
