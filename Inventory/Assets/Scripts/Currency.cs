@@ -11,20 +11,19 @@ public class Currency : MonoBehaviour
     ItemDB db;
 
     // Use this for initialization
-    void Start()
-    {
-        db = ItemDB.FindObjectOfType<ItemDB>();
+    void Start () {
+        db = ItemDB.FindObjectOfType<ItemDB> ();
         db.playerMoney = Money;
-        Text moneydisplay = MoneyAmount.GetComponent<Text>();
-        moneydisplay.text = Money.ToString();
+        Text moneydisplay = MoneyAmount.GetComponent<Text> ();
+        moneydisplay.text = Money.ToString ();
     }
 
-    public void UpdateAmountText() {
+    public void UpdateAmountText () {
 
         MoneyAmount.text = "" + db.playerMoney + "$";
     }
 
-    public void SetText(string moneyAmount) {
+    public void SetText (string moneyAmount) {
         MoneyAmount.text = moneyAmount;
     }
 

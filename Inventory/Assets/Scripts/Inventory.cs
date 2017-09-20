@@ -3,114 +3,106 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
-{
+public class Inventory : MonoBehaviour {
 
-    GameObject InventoryPanel;
-    GameObject SlotPanel;
+    GameObject inventoryPanel;      //Gameobject, welches mein Inventar hält
+    GameObject slotPanel;           //Gameobject, welches meine Slots hält
     ItemDB database;
-    public GameObject InventorySlot;
-    public GameObject InventoryItem;
+    public GameObject inventorySlot;        //Public um den Slot als Prefab im Inspector zu setzen
+    public GameObject inventoryItem;        //Public um die Items als Prefab im Inspector zu setzen (Wird über eine Identifizierung dynamisch selbst gesetzt)
     int slotAmount;
 
-    List<ItemDB.Item> InventoryItems = new List<ItemDB.Item>();
-    List<SlotEventSystem> Slots = new List<SlotEventSystem>();
+    List<ItemDB.Item> inventoryItems = new List<ItemDB.Item>();
+    List<SlotEventSystem> slots = new List<SlotEventSystem>();
   
     public static Inventory instance;
     public ItemsEventSystem draggingItem;
     public SlotEventSystem slotUnderPointer;
-    public GameObject DragPanel;
+    public GameObject dragPanel;
 
-    void Awake() {
+    void Awake()
+    {
         instance = this;
     }
 
     void Start()
     {
-        DragPanel = GameObject.Find("DragPanel");
+        dragPanel = GameObject.Find("DragPanel");
         database = GetComponent<ItemDB>();
         slotAmount = 28;
-        InventoryPanel = GameObject.Find("Inventory Panel");
-        SlotPanel = GameObject.Find("SlotPanel");
+        inventoryPanel = GameObject.Find("Inventory Panel");
+        slotPanel = GameObject.Find("SlotPanel");
 
         for (int i = 0; i < slotAmount; i++) {
 
-            Slots.Add(Instantiate(InventorySlot).GetComponent<SlotEventSystem>());
-            Slots[i].transform.SetParent(SlotPanel.transform);
-            Slots[i].name = "" + i;
+            slots.Add (Instantiate (inventorySlot).GetComponent<SlotEventSystem> ());
+            slots[i].transform.SetParent(slotPanel.transform);
+            slots[i].name = "" + i;
         }
     }
 
 
-    public void AddRandomItem() {
-
-
-        AddItem(Random.Range(0,ItemDB.database.Count));
-
-    }
-
-    public void AddItem(int ID) {
-
-     //  bool stackableandpresent = InventoryItems.Contains(itemto);
-        ItemDB.Item ItemtoAdd = database.GetItemByID(ID);
-        for (int i = 0; i < Slots.Count; i++) {
-
-            if (ItemtoAdd.Stackable && Slots[i].slotItem != null && Slots[i].slotItem._Item.ID == ItemtoAdd.ID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier) { //wenn stackable
-
-                        Slots[i].StackItem(1);
-                        print(Slots[i].slotItem._Item.Armor);
-                        print(Slots[i].slotItem._Item.Stackable + " ist nicht stackable");
-                break;
-
-            }
-            else if (Slots[i].slotItem == null) {
-                InventoryItems.Add(ItemtoAdd);
-                GameObject InventoryObject = Instantiate(InventoryItem);
-                InventoryObject.transform.SetParent(Slots[i].transform);
-                InventoryObject.transform.localPosition = Vector2.zero;
-                InventoryObject.name = ItemtoAdd.Title;
-                ItemsEventSystem item = InventoryObject.GetComponent<ItemsEventSystem>();
-                item.slot = Slots[i];
-                Slots[i].slotItem = item;
-                item.setItem(ItemtoAdd);
-                item.databasereference = database;
-
-                print(InventoryItems.Count + " Wurden hinzugefügt");
-                print(Slots[i].slotItem._Item.Stackable + " ist nicht stackable");
-                break;
-            }
-        }
-    }
-
-    public void AddItem(ItemDB.Item ItemtoAdd)
+    public void AddRandomItem()
     {
+        AddItem (Random.Range (0,ItemDB.database.Count));
+    }
 
-        for (int i = 0; i < Slots.Count; i++)
-        {
+    public void AddItem (int ID)
+    {
+        ItemDB.Item ItemtoAdd = database.GetItemByID(ID);
+        for (int i = 0; i < slots.Count; i++) {
 
-            if (ItemtoAdd.Stackable && Slots[i].slotItem != null && Slots[i].slotItem._Item.ID == ItemtoAdd.ID && Slots[i].slotItem._Item.Tier == ItemtoAdd.Tier)
-            { //wenn stackable
+            if (ItemtoAdd.Stackable && slots[i].slotItem != null && slots[i].slotItem._item.ID == ItemtoAdd.ID && slots[i].slotItem._item.Tier == ItemtoAdd.Tier) { //wenn stackable
 
-                Slots[i].StackItem(1);
-                print(Slots[i].slotItem._Item.Armor);
-                print(Slots[i].slotItem._Item.Stackable + " ist nicht stackable");
+                        slots[i].StackItem (1);
+                        print(slots[i].slotItem._item.Armor);
+                        print(slots[i].slotItem._item.Stackable + " ist nicht stackable");
                 break;
 
-            }
-            else if (Slots[i].slotItem == null)
-            {
-                InventoryItems.Add(ItemtoAdd);
-                GameObject InventoryObject = Instantiate(InventoryItem);
-                InventoryObject.transform.SetParent(Slots[i].transform);
+            } else if (slots[i].slotItem == null) {
+                inventoryItems.Add(ItemtoAdd);
+                GameObject InventoryObject = Instantiate(inventoryItem);
+                InventoryObject.transform.SetParent(slots[i].transform);
                 InventoryObject.transform.localPosition = Vector2.zero;
                 InventoryObject.name = ItemtoAdd.Title;
                 ItemsEventSystem item = InventoryObject.GetComponent<ItemsEventSystem>();
-                item.slot = Slots[i];
-                Slots[i].slotItem = item;
+                item.slot = slots[i];
+                slots[i].slotItem = item;
                 item.setItem(ItemtoAdd);
                 item.databasereference = database;
-                print(InventoryItems.Count + " Wurden hinzugefügt");             
-                print(Slots[i].slotItem._Item.Stackable + " ist nicht stackable");
+
+                print(inventoryItems.Count + " Wurden hinzugefügt");
+                print(slots[i].slotItem._item.Stackable + " ist nicht stackable");
+                break;
+            }
+        }
+    }
+
+    public void AddItem (ItemDB.Item ItemtoAdd)
+    {
+        for (int i = 0; i < slots.Count; i++) {
+
+            if (ItemtoAdd.Stackable && slots[i].slotItem != null && slots[i].slotItem._item.ID == ItemtoAdd.ID && slots[i].slotItem._item.Tier == ItemtoAdd.Tier) { //wenn stackable
+
+                slots[i].StackItem (1);
+                print (slots[i].slotItem._item.Armor);
+                print (slots[i].slotItem._item.Stackable + " ist nicht stackable");
+                break;
+
+            } else if (slots[i].slotItem == null) {
+
+                inventoryItems.Add (ItemtoAdd);
+                GameObject InventoryObject = Instantiate (inventoryItem);
+                InventoryObject.transform.SetParent (slots[i].transform);
+                InventoryObject.transform.localPosition = Vector2.zero;
+                InventoryObject.name = ItemtoAdd.Title;
+                ItemsEventSystem item = InventoryObject.GetComponent<ItemsEventSystem> ();
+                item.slot = slots[i];
+                slots[i].slotItem = item;
+                item.setItem (ItemtoAdd);
+                item.databasereference = database;
+                print (inventoryItems.Count + " Wurden hinzugefügt");             
+                print (slots[i].slotItem._item.Stackable + " ist nicht stackable");
                 break;
             }
         }

@@ -11,10 +11,12 @@ public class SerializableBase
     /// Might be executed by some serializers (JSON.net should call this...)
     /// </summary>
     /// <param name="context"></param>
+    
+
     [OnDeserializing]
-    void BeforeDeserializing(StreamingContext context)
+    void BeforeDeserializing (StreamingContext context)
     {
-        _OnConstruct();
+        _OnConstruct ();
     }
 
     bool wasConstructed = false;
@@ -30,16 +32,18 @@ public class SerializableBase
     /// <summary>
     /// Executed on creation or deserialization. Some serializers will NOT call this!
     /// </summary>
-    public SerializableBase()
+    
+
+    public SerializableBase ()
     {
-        _OnConstruct();
+        _OnConstruct ();
     }
 
     /// <summary>
     /// Will be executed on construct OR on deserialization. Whatever is executed first
     /// </summary>
-    protected virtual void OnConstruct()
+    
+    protected virtual void OnConstruct ()
     {
-
     }
 }

@@ -12,31 +12,23 @@ public class SlotEventSystem : MonoBehaviour,  IPointerEnterHandler , IPointerEx
 
     private void Start()
     {
-
-        Text counterdisplay = StackCounterText.GetComponent<Text>();
-        counterdisplay.text = stackcounter.ToString();
+        Text counterdisplay = StackCounterText.GetComponent<Text> ();
+        counterdisplay.text = stackcounter.ToString ();
         StackCounterText.enabled = false;
-
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter (PointerEventData eventData)
     {
-        
             Inventory.instance.slotUnderPointer = this;
-        
-        
     }
 
-    public void OnPointerExit(PointerEventData eventData) {
-
- //       Inventory.instance.slotUnderPointer = null;
-
+    public void OnPointerExit (PointerEventData eventData)
+    {
     }
 
-    public void StackItem(int stackcount) {
-
+    public void StackItem (int stackcount)
+    { 
         stackcounter += stackcount;
-        StackCounterText.text = stackcounter.ToString();
-
+        StackCounterText.text = stackcounter.ToString ();
     }
 }
