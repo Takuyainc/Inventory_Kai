@@ -8,20 +8,19 @@ using System.Runtime.Serialization;
 public class SerializableBase
 {
     /// <summary>
-    /// Might be executed by some serializers (JSON.net should call this...)
+    /// Manche Serialisierer rufen das hier auf (JSON.net sollte es tun)
     /// </summary>
     /// <param name="context"></param>
     
-
     [OnDeserializing]
     void BeforeDeserializing (StreamingContext context)
     {
-        _OnConstruct ();
+        _OnConstruct ();    // Serialisierung
     }
 
     bool wasConstructed = false;
 
-    void _OnConstruct()
+    void _OnConstruct()     // Sicherheitsmaßnahme um zu checken ob serialisiert wurde und im Falle das nicht, dies noch geschieht
     {
         if (wasConstructed) return;
         wasConstructed = true;
@@ -30,17 +29,16 @@ public class SerializableBase
     }
 
     /// <summary>
-    /// Executed on creation or deserialization. Some serializers will NOT call this!
+    /// Wird bei Erstellung oder Deserialisierung aufgerufen. Manche serialisierer rufen es nicht auf!
     /// </summary>
     
-
     public SerializableBase ()
     {
         _OnConstruct ();
     }
 
     /// <summary>
-    /// Will be executed on construct OR on deserialization. Whatever is executed first
+    /// Wird bei onConstruct ODER Deserialisierung augerufen. Abhängig davon was zuerst aufgerufen wird
     /// </summary>
     
     protected virtual void OnConstruct ()

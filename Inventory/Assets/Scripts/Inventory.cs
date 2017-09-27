@@ -22,9 +22,15 @@ public class Inventory : MonoBehaviour {
 
     void Awake()
     {
-        instance = this;
+        instance = this;    // Nötig um Inventory Global einfach zugänglich zu machen
     }
 
+    /// <summary>
+    /// On Start wird das Inventar erstellt. Sollte man SlotAmount Public stellen, könnte man im Inspector die Slotanzahl dynamisch setzen. Wegen der gewählten Größe des Inventar auf 28.
+    /// Slots bekommen sofort ihren entsprechenden Parent um spätere onClick und onDrag zu ermöglichen.
+    /// Jeder Slot bekommt eine Nummer zugewiesen um im Inspector einfacher identifiziert werden zu können
+    /// </summary>
+     
     void Start()
     {
         dragPanel = GameObject.Find("DragPanel");
@@ -44,19 +50,27 @@ public class Inventory : MonoBehaviour {
 
     public void AddRandomItem()
     {
-        AddItem (Random.Range (0,ItemDB.database.Count));
+        AddItem (Random.Range (0,ItemDB.database.Count));   // Nur nötig, damit Testweise alle möglichen Items gespawnt werden, wenn man es möchte. Hat keinen Sinn für echte Inventar Anwendungen.
     }
 
+    /// <summary>
+    /// Das Richtige Item, dass gespawned werden soll, wird anhand seiner ID gecheckt.
+    /// Es wird über jeden vorhandenen Slot gelaufen, ob dieser ein Item enthält dessen stackable = true ist, der Slot nicht leer ist, die ID mit der ID des Item das zu spanwen ist übereinstimmt und ob dessen Tier identisch ist.
+    /// Falls das so ist, wird ein Stack auf dem Slot erstellt.
+    /// Falls der Slot leer ist, wird ein neues Item im nächsten verfügbaren gespawned.
+    /// Position und Parent des Items wird dynamisch auf die Position des Slots zugewiesen, damit es mittig spawned.
+    /// </summary>
+    /// <param name="ID"></param>
+    
     public void AddItem (int ID)
     {
         ItemDB.Item ItemtoAdd = database.GetItemByID(ID);
         for (int i = 0; i < slots.Count; i++) {
 
-            if (ItemtoAdd.Stackable && slots[i].slotItem != null && slots[i].slotItem._item.ID == ItemtoAdd.ID && slots[i].slotItem._item.Tier == ItemtoAdd.Tier) { //wenn stackable
+            if (ItemtoAdd.Stackable && slots[i].slotItem != null && slots[i].slotItem._item.ID == ItemtoAdd.ID && slots[i].slotItem._item.Tier == ItemtoAdd.Tier) { 
 
                         slots[i].StackItem (1);
                         print(slots[i].slotItem._item.Armor);
-                        print(slots[i].slotItem._item.Stackable + " ist nicht stackable");
                 break;
 
             } else if (slots[i].slotItem == null) {
@@ -82,11 +96,10 @@ public class Inventory : MonoBehaviour {
     {
         for (int i = 0; i < slots.Count; i++) {
 
-            if (ItemtoAdd.Stackable && slots[i].slotItem != null && slots[i].slotItem._item.ID == ItemtoAdd.ID && slots[i].slotItem._item.Tier == ItemtoAdd.Tier) { //wenn stackable
+            if (ItemtoAdd.Stackable && slots[i].slotItem != null && slots[i].slotItem._item.ID == ItemtoAdd.ID && slots[i].slotItem._item.Tier == ItemtoAdd.Tier) { 
 
                 slots[i].StackItem (1);
                 print (slots[i].slotItem._item.Armor);
-                print (slots[i].slotItem._item.Stackable + " ist nicht stackable");
                 break;
 
             } else if (slots[i].slotItem == null) {
@@ -101,6 +114,7 @@ public class Inventory : MonoBehaviour {
                 slots[i].slotItem = item;
                 item.setItem (ItemtoAdd);
                 item.databasereference = database;
+
                 print (inventoryItems.Count + " Wurden hinzugefügt");             
                 print (slots[i].slotItem._item.Stackable + " ist nicht stackable");
                 break;

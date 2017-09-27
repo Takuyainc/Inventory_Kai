@@ -16,14 +16,14 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     Vector3 initialPosition;
 
-    public void setItem (ItemDB.Item newItem)
+    public void setItem (ItemDB.Item newItem)       // Funktion um das richtige Item "auszuwählen". Das Item bekommt sein entsprechendes Sprite zugewiesen.
     {
         _item = newItem;
         GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Items/" + _item.Slug);
 
         if (_item.Stackable) {
 
-            slot.StackCounterText.enabled = true;   // aktiviert counter text falls ein stack vorhanden ist
+            slot.StackCounterText.enabled = true;   // Falls ein Stack vorhanden ist, wird der Counter aktivitert.
             slot.StackItem(1);
 
         } else {
@@ -32,6 +32,12 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         }
     }
 
+    /// <summary>
+    /// Falls der Slot ein Item enthält, wird ein Drag möglich sein. Dafür wird das Item neu geparentet, damit die Raycasts treffen können (Das Dragpanel liegt in der Hierarchie
+    /// über den Slots, somit wird dieser Raycast nie verdeckt.)
+    /// </summary>
+    /// <param name="eventData"></param>
+     
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (_item != null) {
@@ -60,22 +66,29 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             slot.stackcounter = 0;
             slot.StackCounterText.enabled = false;
 
-            slot = Inventory.instance.slotUnderPointer;     // slot wird verändert
+            slot = Inventory.instance.slotUnderPointer;     // Der Slot wird verändert.
             slot.StackCounterText.enabled = true;
             slot.StackItem (oldstackcounter);
 
-            slot.slotItem = this;    // ich sage dem slot wo ich jetzt drauf komme, ich bin dein neues item
-            transform.position = slot.transform.position;   //transform der position
-            transform.SetParent (slot.transform);    // neu parenten damit der raycast ausgeführt werden kann
+            slot.slotItem = this;    // Ich sage dem slot wo ich jetzt drauf komme, ich bin dein neues Item.
+            transform.position = slot.transform.position;   // Transform der Position.
+            transform.SetParent (slot.transform);    // Neu parenten damit der raycast ausgeführt werden kann. Andernfalls ist kein Drag mehr möglich.
         } else { 
-            transform.position = initialPosition;
-            this.transform.SetParent(slot.transform);
+            transform.position = initialPosition;   // Falls das Item keinen neuen Slot trifft, snapped es wieder zurück zum alten Slot.
+            this.transform.SetParent(slot.transform);   // Erneut parenten, damit anschließender Drag wieder möglich ist.
         }
     }
 
+    /// <summary>
+    /// Ist ein Item vorhanden und hat es einen Stack von 1, wird Upgradeitem aufgerufen. Für den Fall das der Stackcounter größer als 1 ist, was einem Stackable Item entspricht,
+    /// wird weiterhin gecheckt ob das entstehende Item ein anderes ist, als das zu upgradende (reine Testzwecke, trifft immer zu).
+    /// Nun wird der Stackcount um 1 heruntergesetzt und ein neues Item wird dem Inventar hinzugefügt.
+    /// </summary>
+    /// <param name="eventData"></param>
+    /// 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_item != null && eventData.button == PointerEventData.InputButton.Right) {
+        if (_item != null && eventData.button == PointerEventData.InputButton.Right) {  // Rechte Maustaste auf einem Item
 
             if (slot.stackcounter == 1 || !_item.Stackable) {
 
