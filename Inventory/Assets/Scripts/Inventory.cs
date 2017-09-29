@@ -74,6 +74,7 @@ public class Inventory : MonoBehaviour {
                 break;
 
             } else if (slots[i].slotItem == null) {
+
                 inventoryItems.Add(ItemtoAdd);
                 GameObject InventoryObject = Instantiate(inventoryItem);
                 InventoryObject.transform.SetParent(slots[i].transform);
@@ -98,8 +99,9 @@ public class Inventory : MonoBehaviour {
 
             if (ItemtoAdd.Stackable && slots[i].slotItem != null && slots[i].slotItem._item.ID == ItemtoAdd.ID && slots[i].slotItem._item.Tier == ItemtoAdd.Tier) { 
 
-                slots[i].StackItem (1);
-                print (slots[i].slotItem._item.Armor);
+                    slots[i].StackItem (1);
+                    print (slots[i].slotItem._item.Armor);
+
                 break;
 
             } else if (slots[i].slotItem == null) {
