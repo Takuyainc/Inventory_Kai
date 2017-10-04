@@ -60,17 +60,17 @@ public class ItemsEventSystem : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         GetComponent<Image> ().raycastTarget = true;
         Inventory.instance.draggingItem = null;
-        if (Inventory.instance.slotUnderPointer.slotItem == null) {  //inventory instance ist eine referenz. 
-            int oldstackcounter = slot.stackcounter;
+        if (Inventory.instance.slotUnderPointer.slotItem == null) {  // Inventory instance ist eine referenz. 
+            int oldstackcounter = slot.stackcounter;    // Stackcount wird temporär gespeichert
             slot.slotItem = null;
             slot.stackcounter = 0;
             slot.StackCounterText.enabled = false;
 
             slot = Inventory.instance.slotUnderPointer;     // Der Slot wird verändert.
             slot.StackCounterText.enabled = true;
-            slot.StackItem (oldstackcounter);
+            slot.StackItem (oldstackcounter);   // StackItem wird im Falle das das item stackable ist aufgerufen und bekommt den Wert des temporär gespeicherten Counters
 
-            slot.slotItem = this;    // Ich sage dem slot wo ich jetzt drauf komme, ich bin dein neues Item.
+            slot.slotItem = this;    // Ich sage dem slot auf dem ich lande, ich bin dein neues Item.
             transform.position = slot.transform.position;   // Transform der Position.
             transform.SetParent (slot.transform);    // Neu parenten damit der raycast ausgeführt werden kann. Andernfalls ist kein Drag mehr möglich.
         } else { 

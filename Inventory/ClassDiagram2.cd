@@ -1,2 +1,125 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Currency">
+    <Position X="6.25" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACAQAAAAAIQAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Currency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Inventory">
+    <Position X="3.5" Y="4.5" Width="2" />
+    <InheritanceLine Type="UnityEngine.MonoBehaviour" FixedFromPoint="true">
+      <Path>
+        <Point X="7.5" Y="3.191" />
+        <Point X="7.5" Y="4.125" />
+        <Point X="4.5" Y="4.125" />
+        <Point X="4.5" Y="4.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEBCAAAABQAAAgAQAAgABIAAAAAAUAAADAEEA=</HashCode>
+      <FileName>Assets\Scripts\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemDB">
+    <Position X="1.25" Y="0.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="ItemDB.Item">
+        <NestedTypes>
+          <Enum Name="ItemDB.Item.TierEnum" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>Assets\Scripts\ItemDB.cs</NewMemberFileName>
+            </TypeIdentifier>
+          </Enum>
+        </NestedTypes>
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\ItemDB.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="UnityEngine.MonoBehaviour" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="3" />
+        <Point X="6.875" Y="3" />
+        <Point X="6.875" Y="1.391" />
+        <Point X="3.25" Y="1.391" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAABAACAAAAAABAAAAIAAAIBAAAQAAABAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\ItemDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemsEventSystem">
+    <Position X="12.25" Y="4.5" Width="1.75" />
+    <InheritanceLine Type="UnityEngine.MonoBehaviour" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="3" />
+        <Point X="11.875" Y="3" />
+        <Point X="11.875" Y="5.25" />
+        <Point X="12.25" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AUAAAAAEAhAAAAAAAABAEAAAABAAACAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ItemsEventSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SlotEventSystem">
+    <Position X="9.5" Y="5" Width="1.5" />
+    <InheritanceLine Type="UnityEngine.MonoBehaviour" FixedFromPoint="true">
+      <Path>
+        <Point X="8.5" Y="3.191" />
+        <Point X="8.5" Y="4.625" />
+        <Point X="10.25" Y="4.625" />
+        <Point X="10.25" Y="5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABACCAAAAQAQAAAAAAAAAgAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\SlotEventSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.587" />
+  </Class>
+  <Class Name="JsonNetSample">
+    <Position X="14.25" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="JsonNetSample.Product" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UnityPackages\JsonNetSample\JsonNetSample.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="JsonNetSample.CharacterListItem" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UnityPackages\JsonNetSample\JsonNetSample.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="JsonNetSample.Movie" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UnityPackages\JsonNetSample\JsonNetSample.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="UnityEngine.MonoBehaviour" FixedFromPoint="true">
+      <Path>
+        <Point X="8.75" Y="2.75" />
+        <Point X="15" Y="2.75" />
+        <Point X="15" Y="4.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAARAAAACAAAAAIAAAIAAAAAQgAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\UnityPackages\JsonNetSample\JsonNetSample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
